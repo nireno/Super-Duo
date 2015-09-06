@@ -1,8 +1,11 @@
 package it.jaschke.alexandria;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -16,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -69,6 +73,16 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
+                Context context = getActivity();
+                ConnectivityManager cm = (ConnectivityManager)context
+                        .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                if(!(activeNetwork != null && activeNetwork.isConnected())){
+                    Toast.makeText(context, getString(R.string.no_internet_message), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String ean =s.toString();
                 //catch isbn10 numbers
                 if(ean.length()==10 && !ean.startsWith("978")){
