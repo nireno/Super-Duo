@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     public static final String MESSAGE_EVENT = "MESSAGE_EVENT";
     public static final String MESSAGE_KEY = "MESSAGE_EXTRA";
+    public static final String ADD_BOOK_TAG = "ABT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment nextFragment;
+        String tag = "";
+
 
         switch (position){
             default:
@@ -73,6 +76,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             case 1:
                 nextFragment = new AddBook();
+                tag = ADD_BOOK_TAG;
                 break;
             case 2:
                 nextFragment = new About();
@@ -81,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         }
 
         fragmentManager.beginTransaction()
-                .replace(R.id.container, nextFragment)
+                .replace(R.id.container, nextFragment, tag)
                 .addToBackStack((String) title)
                 .commit();
     }
@@ -178,5 +182,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         super.onBackPressed();
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+            AddBook addBook = (AddBook)getSupportFragmentManager().findFragmentByTag(ADD_BOOK_TAG);
+            addBook.onActivityResult(requestCode, resultCode, intent);
+    }
 }
