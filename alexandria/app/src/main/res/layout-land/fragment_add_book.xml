@@ -38,18 +38,16 @@
             android:layout_toEndOf="@+id/ean"/>
 
         <TextView
+            tools:text="Book Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bookTitle"
             android:textSize="@dimen/head_line"
             android:textIsSelectable="true"
             android:textStyle="bold"
-            android:layout_below="@+id/scan_button"
+            android:layout_below="@+id/book_found_message"
             android:layout_alignLeft="@+id/ean"
-            android:layout_alignStart="@+id/ean"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_alignStart="@+id/ean" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,6 +89,20 @@
             android:layout_alignLeft="@+id/bookCover"
             android:layout_alignStart="@+id/bookCover"
             android:layout_marginTop="10dp"/>
+
+        <TextView
+            tools:text="@string/found"
+            tools:visibility="visible"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/found"
+            android:id="@+id/book_found_message"
+            android:background="@drawable/alert_success"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/ean"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <LinearLayout
             android:orientation="vertical"
