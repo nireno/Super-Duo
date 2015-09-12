@@ -27,6 +27,8 @@
     <string name="share_text">A must read book: </string>
 
     <string name="no_internet_message">You need to be online to search for books</string>
+    <string name="book_saved_toast">Book Saved</string>
+    <string name="book_deleted_toast">Book Deleted</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="about_text">This application gets book information from a Google API. All titles, cover images, and author information come from there.

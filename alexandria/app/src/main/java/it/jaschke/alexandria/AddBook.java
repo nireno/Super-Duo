@@ -120,6 +120,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             public void onClick(View view) {
                 ean.setText("");
                 setInputEnabled(true);
+                Toast.makeText(getActivity(), getString(R.string.book_saved_toast), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -132,6 +133,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 getActivity().startService(bookIntent);
                 ean.setText("");
                 setInputEnabled(true);
+                Toast.makeText(getActivity(), getString(R.string.book_deleted_toast), Toast.LENGTH_SHORT).show();
             }
         });
 
