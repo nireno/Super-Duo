@@ -16,6 +16,7 @@
 
     <string name="ok_button">Next</string>
     <string name="cancel_button">Cancel</string>
+    <string name="found">Here\'s your book! It\'s been added to your list.</string>
     <string name="not_found">No Book found</string>
     <string name="search">Search</string>
     <string name="delete">Delete Book</string>

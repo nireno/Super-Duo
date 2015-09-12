@@ -191,6 +191,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
         rootView.findViewById(R.id.save_button).setVisibility(View.VISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.VISIBLE);
+        rootView.findViewById(R.id.book_found_message).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -206,6 +207,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.bookCover).setVisibility(View.INVISIBLE);
         rootView.findViewById(R.id.save_button).setVisibility(View.INVISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.INVISIBLE);
+        rootView.findViewById(R.id.book_found_message).setVisibility(View.INVISIBLE);
     }
 
     @Override
