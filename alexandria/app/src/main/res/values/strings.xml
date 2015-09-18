@@ -13,7 +13,7 @@
     <string name="scan_button">Scan</string>
     <string name="input_hint">Insert ISBN-13. Digits only.</string>
     <string name="book_cover">Image of Book Cover</string>
-    <string name="no_authors_message">No authors are listed.</string>
+    <string name="no_authors_message">No authors provided</string>
 
     <string name="ok_button">Keep it</string>
     <string name="cancel_button">Delete It</string>
@@ -40,5 +40,8 @@
     <string name="desc_book_subtitle">Subtitle:</string>
     <string name="desc_book_authors">Authors:</string>
     <string name="desc_book_categories">Categorised under: </string>
-    <string name="desc_search_book_edit_box">The title of the book you want to find</string>
+    <string name="desc_search_book_edit_box">Search for a book</string>
+    <string name="desc_book_description">Book Description:</string>
+    <string name="no_book_categories">No categories provided</string>
+    <string name="no_description">No description provided</string>
 </resources>

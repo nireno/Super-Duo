@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,12 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
     private String ean;
     private String bookTitle;
     private ShareActionProvider shareActionProvider;
+    private Button btnDelete;
+    private TextView txtBookTitle;
+    private TextView txtBookSubtitle;
+    private TextView txtCategories;
+    private TextView txtAuthors;
+    private TextView txtBookDescription;
 
     public BookDetail(){
     }
@@ -52,7 +59,14 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         }
 
         rootView = inflater.inflate(R.layout.fragment_full_book, container, false);
-        rootView.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
+        btnDelete = (Button) rootView.findViewById(R.id.delete_button);
+        txtBookTitle = (TextView) rootView.findViewById(R.id.fullBookTitle);
+        txtBookSubtitle = (TextView) rootView.findViewById(R.id.fullBookSubTitle);
+        txtAuthors = (TextView) rootView.findViewById(R.id.authors);
+        txtCategories = (TextView) rootView.findViewById(R.id.categories);
+        txtBookDescription = (TextView) rootView.findViewById(R.id.fullBookDesc);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
@@ -94,21 +108,33 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         }
 
         bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
-        ((TextView) rootView.findViewById(R.id.fullBookTitle)).setText(bookTitle);
+        txtBookTitle.setText(bookTitle);
+        txtBookTitle.setContentDescription(getString(R.string.desc_book_title) + bookTitle);
 
         setupShareIntent();
 
         String bookSubTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
-        ((TextView) rootView.findViewById(R.id.fullBookSubTitle)).setText(bookSubTitle);
+        txtBookSubtitle.setText(bookSubTitle);
+        if(bookSubTitle != null && !bookSubTitle.isEmpty()) {
+            txtBookSubtitle.setContentDescription(getString(R.string.desc_book_subtitle) + bookSubTitle);
+        }
 
         String desc = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.DESC));
-        ((TextView) rootView.findViewById(R.id.fullBookDesc)).setText(desc);
+        txtBookDescription.setText(desc);
+        if(desc != null && !desc.isEmpty()){
+            txtBookDescription.setContentDescription(getString(R.string.desc_book_description) + desc);
+        } else {
+            txtBookDescription.setText(getString(R.string.no_description));
+        }
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
         if(authors != null){
             String[] authorsArr = authors.split(",");
-            ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
-            ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+            txtAuthors.setLines(authorsArr.length);
+            txtAuthors.setText(authors.replace(",", "\n"));
+            txtAuthors.setContentDescription(getString(R.string.desc_book_authors) + authors);
+        } else {
+            txtAuthors.setText(getString(R.string.no_authors_message));
         }
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
         if(Patterns.WEB_URL.matcher(imgUrl).matches()){
@@ -117,11 +143,18 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         }
 
         String categories = data.getString(data.getColumnIndex(AlexandriaContract.CategoryEntry.CATEGORY));
-        ((TextView) rootView.findViewById(R.id.categories)).setText(categories);
+        txtCategories.setText(categories);
+        if(categories != null && !categories.isEmpty()){
+            txtCategories.setContentDescription(getString(R.string.desc_book_categories) + categories);
+        } else {
+            txtCategories.setContentDescription(getString(R.string.no_book_categories));
+        }
 
         if(rootView.findViewById(R.id.right_container)!=null){
             rootView.findViewById(R.id.backButton).setVisibility(View.INVISIBLE);
         }
+
+        txtBookTitle.requestFocus();
 
     }
 

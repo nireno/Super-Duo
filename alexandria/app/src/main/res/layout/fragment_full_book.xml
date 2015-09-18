@@ -55,12 +55,14 @@
 
 
                 <TextView
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/fullBookDesc"
                     android:ellipsize="end"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@+id/fullBookCover"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_alignLeft="@+id/fullBookCover"
+                    android:layout_alignStart="@+id/fullBookCover"
                     android:layout_margin="10dp"
                     />
 
@@ -69,11 +71,13 @@
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/fullBookDesc"
+                    android:layout_below="@+id/fullBookCover"
                     android:layout_marginTop="10dp"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:id="@+id/linearLayout">
 
                     <TextView
+                        tools:text="cat 1, cat 2, cat3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/categories"
@@ -81,6 +85,7 @@
                         android:gravity="left|top"/>
 
                     <TextView
+                        tools:text="tom\n dick\n harry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/authors"
