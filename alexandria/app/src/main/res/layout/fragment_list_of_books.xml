@@ -31,7 +31,8 @@
             android:layout_toStartOf="@+id/searchButton"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/desc_search_book_edit_box"/>
 
 
         <ListView android:id="@+id/listOfBooks"

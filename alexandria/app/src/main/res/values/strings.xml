@@ -40,4 +40,5 @@
     <string name="desc_book_subtitle">Subtitle:</string>
     <string name="desc_book_authors">Authors:</string>
     <string name="desc_book_categories">Categorised under: </string>
+    <string name="desc_search_book_edit_box">The title of the book you want to find</string>
 </resources>

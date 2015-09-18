@@ -46,9 +46,13 @@ public class BookListAdapter extends CursorAdapter {
 
         String bookTitle = cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
         viewHolder.bookTitle.setText(bookTitle);
+        viewHolder.bookTitle.setContentDescription(context.getString(R.string.desc_book_title) + bookTitle);
 
         String bookSubTitle = cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
         viewHolder.bookSubTitle.setText(bookSubTitle);
+        if(bookSubTitle.compareTo("") != 0){
+            viewHolder.bookSubTitle.setContentDescription(context.getString(R.string.desc_book_subtitle) + bookSubTitle);
+        }
     }
 
     @Override
