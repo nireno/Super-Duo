@@ -176,16 +176,24 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
         setInputEnabled(false);
         String bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
-        ((TextView) rootView.findViewById(R.id.bookTitle)).setText(bookTitle);
+        TextView bookTitleView = ((TextView) rootView.findViewById(R.id.bookTitle));
+        bookTitleView.setText(bookTitle);
+        bookTitleView.setContentDescription(getString(R.string.desc_book_title) + bookTitle);
 
         String bookSubTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
-        ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
+        TextView bookSubTitleView = ((TextView) rootView.findViewById(R.id.bookSubTitle));
+        bookSubTitleView.setText(bookSubTitle);
+        bookSubTitleView.setContentDescription(getString(R.string.desc_book_subtitle) + bookSubTitle);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
+        TextView authorsView = ((TextView) rootView.findViewById(R.id.authors));
         if(authors != null){
             String[] authorsArr = authors.split(",");
-            ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
-            ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+            authorsView.setLines(authorsArr.length);
+            authorsView.setText(authors.replace(",", "\n"));
+            authorsView.setContentDescription(getString(R.string.desc_book_authors) + authors);
+        } else {
+            authorsView.setText(getString(R.string.no_authors_message));
         }
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
         if(Patterns.WEB_URL.matcher(imgUrl).matches()){
@@ -194,7 +202,9 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         }
 
         String categories = data.getString(data.getColumnIndex(AlexandriaContract.CategoryEntry.CATEGORY));
-        ((TextView) rootView.findViewById(R.id.categories)).setText(categories);
+        TextView categoriesView = ((TextView) rootView.findViewById(R.id.categories));
+        categoriesView.setText(categories);
+        categoriesView.setContentDescription(getString(R.string.desc_book_categories) + categories);
 
         rootView.findViewById(R.id.save_button).setVisibility(View.VISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.VISIBLE);

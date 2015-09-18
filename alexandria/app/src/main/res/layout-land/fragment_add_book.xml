@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/bookTitle"
             android:textSize="@dimen/head_line"
-            android:textIsSelectable="true"
             android:textStyle="bold"
             android:layout_below="@+id/book_found_message"
             android:layout_alignLeft="@+id/ean"
