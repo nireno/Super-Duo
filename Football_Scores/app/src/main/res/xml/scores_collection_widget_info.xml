@@ -2,6 +2,6 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="40dp" android:minHeight="40dp" android:updatePeriodMillis="0"
     android:previewImage="@drawable/ic_launcher"
-    android:initialLayout="@layout/scores_collection_widget"
+    android:initialLayout="@layout/score_widget_list"
     android:resizeMode="horizontal|vertical" android:widgetCategory="home_screen"
-    android:initialKeyguardLayout="@layout/scores_collection_widget"></appwidget-provider>
+    android:initialKeyguardLayout="@layout/score_widget_list" />
