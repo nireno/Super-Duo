@@ -52,6 +52,12 @@
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" >
         </service>
+        <service
+            android:name="widget.WidgetRemoteViewsService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" >
+        </service>
     </application>
 
 </manifest>

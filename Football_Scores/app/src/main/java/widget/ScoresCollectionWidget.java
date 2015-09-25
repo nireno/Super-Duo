@@ -43,7 +43,7 @@ public class ScoresCollectionWidget extends AppWidgetProvider {
 //            CharSequence widgetText = new Date().toString();
 //            views.setTextViewText(R.id.appwidget_text, widgetText);
 
-            Intent serviceIntent = new Intent(context, ScoresWidgetService.class);
+            Intent serviceIntent = new Intent(context, WidgetRemoteViewsService.class);
 //            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
 //            serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME))); // embed extras so they don't get ignored
 
