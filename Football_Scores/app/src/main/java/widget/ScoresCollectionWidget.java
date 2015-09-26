@@ -1,13 +1,16 @@
 package widget;
 
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
+import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
 
 /**
@@ -49,7 +52,11 @@ public class ScoresCollectionWidget extends AppWidgetProvider {
 
             remoteViews.setRemoteAdapter(appWidgetId, R.id.listView, serviceIntent);
 //            remoteViews.setEmptyView(R.id.stackWidgetView, R.id.stackWidgetEmptyView);
-
+            Intent clickIntentTemplate = new Intent(context, MainActivity.class);
+            PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
+                    .addNextIntentWithParentStack(clickIntentTemplate)
+                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setPendingIntentTemplate(R.id.listView, clickPendingIntentTemplate);
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
     }

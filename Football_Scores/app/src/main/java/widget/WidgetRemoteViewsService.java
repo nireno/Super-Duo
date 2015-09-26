@@ -99,7 +99,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 //                final Intent fillInIntent = new Intent();
 //                Uri uri = DatabaseContract.scores_table.buildUriHere()
 //                fillInIntent.setData(uri);
-//                views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
+                views.setOnClickFillInIntent(R.id.scores_widget_list_item, new Intent());
 
                 return views;
             }
