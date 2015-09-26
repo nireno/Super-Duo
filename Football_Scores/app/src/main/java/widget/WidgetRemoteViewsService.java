@@ -11,15 +11,22 @@ import android.widget.RemoteViewsService;
 
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.Utilies;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetRemoteViewsService extends RemoteViewsService {
     public final String LOG_TAG = WidgetRemoteViewsService.class.getSimpleName();
     private static final String[] SCORE_COLUMNS = {
-            DatabaseContract.scores_table.HOME_COL
+            DatabaseContract.scores_table.HOME_COL,
+            DatabaseContract.scores_table.AWAY_COL,
+            DatabaseContract.scores_table.HOME_GOALS_COL,
+            DatabaseContract.scores_table.AWAY_GOALS_COL
     };
     // these indices must match the projection
     static final int INDEX_TEAM_HOME = 0;
+    static final int INDEX_TEAM_AWAY = 1;
+    static final int INDEX_GOALS_HOME = 2;
+    static final int INDEX_GOALS_AWAY = 3;
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
@@ -75,7 +82,12 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 //                }
 
                 String homeTeam = data.getString(INDEX_TEAM_HOME);
-                views.setTextViewText(R.id.textView, homeTeam);
+                String awayTeam = data.getString(INDEX_TEAM_AWAY);
+                String score = Utilies.getScores(data.getInt(INDEX_GOALS_HOME)
+                        , data.getInt(INDEX_GOALS_AWAY));
+                views.setTextViewText(R.id.widget_home, homeTeam);
+                views.setTextViewText(R.id.widget_away, awayTeam);
+                views.setTextViewText(R.id.widget_score, score);
 
 //                /* When user clicks on this score-view it should take them to associated
 //                activity */
