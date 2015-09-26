@@ -9,9 +9,10 @@ import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.text.SimpleDateFormat;
+
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.Utilies;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class WidgetRemoteViewsService extends RemoteViewsService {
@@ -49,8 +50,9 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
                 data. Therefore we need to clear (and finally restore) the calling identity so
                 that calls use our process and permission */
                 final long identityToken = Binder.clearCallingIdentity();
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis());
                 data = getContentResolver().query(DatabaseContract.scores_table.buildScoreWithDate(),
-                        SCORE_COLUMNS, null, new String[]{"2015-09-24"}, null);
+                        SCORE_COLUMNS, null, new String[]{date}, null);
                 Binder.restoreCallingIdentity(identityToken);
             }
 
@@ -83,11 +85,14 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
                 String homeTeam = data.getString(INDEX_TEAM_HOME);
                 String awayTeam = data.getString(INDEX_TEAM_AWAY);
-                String score = Utilies.getScores(data.getInt(INDEX_GOALS_HOME)
-                        , data.getInt(INDEX_GOALS_AWAY));
+                int homeTeamRawScore = data.getInt(INDEX_GOALS_HOME);
+                int awayTeamRawScore = data.getInt(INDEX_GOALS_AWAY);
+                String homeTeamScore = homeTeamRawScore >= 0 ? Integer.toString(homeTeamRawScore) : "-";
+                String awayTeamScore = awayTeamRawScore >= 0 ? Integer.toString(awayTeamRawScore) : "-";
                 views.setTextViewText(R.id.widget_home, homeTeam);
                 views.setTextViewText(R.id.widget_away, awayTeam);
-                views.setTextViewText(R.id.widget_score, score);
+                views.setTextViewText(R.id.widget_home_score, homeTeamScore);
+                views.setTextViewText(R.id.widget_away_score, awayTeamScore);
 
 //                /* When user clicks on this score-view it should take them to associated
 //                activity */
